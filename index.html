@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yakitori — الرئيسية</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YAKITORI</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="index.html#rules">القوانين</a></li>
+      <li><a href="index.html#faq">الأسئلة</a></li>
+      <li><a href="clans.html">الكلانات</a></li>
+      <li><a href="challenges.html">التحديات</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="#" class="nav-discord">Discord ↗</a></li>
+    </ul>
+    <button class="nav-menu-btn" onclick="toggleMobileNav()">☰</button>
+  </div>
+  <div class="nav-mobile" id="mobileNav">
+    <a href="index.html">الرئيسية</a>
+    <a href="index.html#rules">القوانين</a>
+    <a href="index.html#faq">الأسئلة</a>
+    <a href="clans.html">الكلانات</a>
+    <a href="challenges.html">التحديات</a>
+    <a href="dashboard.html">لوحة التحكم</a>
+    <a href="#">Discord ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag">Social Server · Since 2022</div>
+      <h1>
+        <span class="grad">YAKITORI</span><br>
+        <span style="font-size:.45em;font-weight:400;letter-spacing:4px;color:var(--muted)">ياكيتوري</span>
+      </h1>
+      <p class="hero-desc">مجتمع اجتماعي يجمع المحبين للألعاب والمحادثات. بيئة مرحة وودية منذ يونيو 2022.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn btn-primary">انضم للسيرفر</a>
+        <a href="index.html#rules" class="btn btn-outline">القوانين</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="assets/server-rules-banner.webp" alt="Yakitori" onerror="this.style.display='none';this.parentElement.style.background='var(--red-dim)';this.parentElement.style.minHeight='280px'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num red" id="totalMembers">—</div>
+      <div class="stat-label">إجمالي الأعضاء</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num green"><span class="dot green"></span> <span id="onlineCount">—</span></div>
+      <div class="stat-label">متصل الآن</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num gray"><span class="dot gray"></span> <span id="offlineCount">—</span></div>
+      <div class="stat-label">غير متصل</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num red" id="clanCount">5</div>
+      <div class="stat-label">كلان نشط</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="page">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="assets/about-banner.webp" alt="About Yakitori" onerror="this.style.height='300px';this.style.background='var(--light)';this.style.display='block'">
+      </div>
+      <div class="about-text">
+        <div class="sec-label">من نحن</div>
+        <h2 class="sec-title">سيرفر <span class="grad">ياكيتوري</span></h2>
+        <div class="divider"></div>
+        <p>مرحبًا بكم في سيرفر ياكيتوري! نحن سيرفر اجتماعي تأسس في يونيو 2022، نجمع مجموعة متنوعة من الأصدقاء والمحبين للألعاب والمحادثات.</p>
+        <p>نهدف إلى تقديم بيئة مرحة وودية حيث يمكن للأعضاء الاجتماع والتفاعل مع بعضهم البعض. نؤمن بأهمية الصداقات والتواصل والترفيه.</p>
+        <div class="about-features">
+          <div class="about-feat"><div class="about-feat-dot"></div><span>مناقشات ممتعة حول الألعاب</span></div>
+          <div class="about-feat"><div class="about-feat-dot"></div><span>مساحة للمبدعين</span></div>
+          <div class="about-feat"><div class="about-feat-dot"></div><span>بناء صداقات دائمة</span></div>
+          <div class="about-feat"><div class="about-feat-dot"></div><span>فعاليات ومسابقات مستمرة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" style="margin:0">
+
+<!-- RULES -->
+<section class="section" id="rules">
+  <div class="page">
+    <div class="sec-header">
+      <div class="sec-label">القوانين</div>
+      <h2 class="sec-title"><span class="grad">قوانين</span> سيرفر ياكيتوري</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">يرجى قراءة القوانين والالتزام بها للحفاظ على بيئة آمنة ومريحة للجميع.</p>
+    </div>
+
+    <div class="rules-hero">
+      <img src="assets/server-rules-banner.webp" alt="Server Rules">
+    </div>
+
+    <div class="rule-list">
+      <div class="rule-item">
+        <div class="rule-num">01</div>
+        <div class="rule-body">
+          <h3>الالتزام بإرشادات المنصة</h3>
+          <p>يجب الالتزام بجميع <a href="https://discord.com/terms" style="color:var(--red)">إرشادات وقواعد ديسكورد</a>.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">02</div>
+        <div class="rule-body">
+          <h3>احترام الأعضاء وذوقهم</h3>
+          <ul>
+            <li>احترام جميع الأعضاء وتقبل اختلاف الأذواق</li>
+            <li>احترام إدارة السيرفر وقراراتها</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">03</div>
+        <div class="rule-body">
+          <h3>منع السب والتلميحات المسيئة</h3>
+          <p>يُمنع تمامًا:</p>
+          <ul>
+            <li>التنمر، العنصرية، الطائفية</li>
+            <li>القذف، النشر غير اللائق</li>
+            <li>التسحيب، إرسال روابط كاذبة</li>
+            <li>استخدام الهكر أو التهديد</li>
+            <li>الرد على الخطأ بخطأ ممنوع</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">04</div>
+        <div class="rule-body">
+          <h3>تقييدات الصور الشخصية والأسماء</h3>
+          <p>يُمنع:</p>
+          <ul>
+            <li>إرسال محادثات الخاص في الشات أو السيرفر</li>
+            <li>استخدام اسم أو صورة غير لائقة أو مخفية</li>
+            <li>انتحال شخصيات موجودة بالسيرفر</li>
+            <li>انتحال شخصية أنثى أو شخصية مشهورة</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">05</div>
+        <div class="rule-body">
+          <h3>منع النقاشات السياسية والدينية</h3>
+          <p>يُمنع مناقشة الانتخابات والأحزاب السياسية والقضايا الدينية. الهدف: الحفاظ على بيئة آمنة وخالية من الخلافات.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">06</div>
+        <div class="rule-body">
+          <h3>منع الإزعاج (السبام)</h3>
+          <ul>
+            <li>المنشن المتكرر أو التفاعلات المزعجة</li>
+            <li>نسخ ولصق المحتوى المتكرر</li>
+            <li>النصوص المتسلسلة أو الخطوط العشوائية</li>
+            <li>المنشن ثم الحذف</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-num">07</div>
+        <div class="rule-body">
+          <h3>فلترة المحادثة</h3>
+          <ul>
+            <li>يُمنع إرسال صور أو فيديوهات أو GIF تحتوي على ومضات مؤذية للعين</li>
+            <li>يُمنع التشبيك أو مشاركة محادثات الخاص</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" style="margin:0">
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="page">
+    <div class="sec-header center">
+      <div class="sec-label">أسئلة شائعة</div>
+      <h2 class="sec-title"><span class="grad">الأسئلة</span> المتكررة</h2>
+      <div class="divider center"></div>
+      <p class="sec-sub">إجابات على أكثر الأسئلة شيوعًا حول السيرفر والموقع.</p>
+    </div>
+    <div style="max-width:680px;margin:0 auto">
+      <div class="faq-list" id="faqList">
+        <!-- يتم العمل عليها -->
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-q-text">🔧 يتم العمل على هذا القسم</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">سيتم إضافة الأسئلة الشائعة قريبًا. ترقبوا التحديثات!</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">YAKITORI</div>
+    <div class="footer-copy">© Yakitori Community · 2022 – 2026</div>
+    <div class="footer-links">
+      <a href="index.html#rules">القوانين</a>
+      <a href="clans.html">الكلانات</a>
+      <a href="challenges.html">التحديات</a>
+      <a href="#">Discord</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// Simulate stats (replace with bot API later)
+function loadStats(){
+  // TODO: replace with actual Discord bot API endpoint
+  document.getElementById('totalMembers').textContent = '—';
+  document.getElementById('onlineCount').textContent = '—';
+  document.getElementById('offlineCount').textContent = '—';
+  // When bot is ready:
+  // fetch('/api/stats').then(r=>r.json()).then(d=>{...})
+}
+loadStats();
+</script>
+</body>
+</html>
