@@ -35,30 +35,40 @@
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
+<section class="hero" style="padding: 60px 0;">
+  <div class="hero-inner" style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: nowrap;">
+    
+    <div class="hero-text" style="flex: 1; min-width: 300px;">
       <div class="hero-tag">Social Server · Since 2022</div>
       <h1>
         <span class="grad">YAKITORI</span><br>
         <span style="font-size:.45em;font-weight:400;letter-spacing:4px;color:var(--muted)">ياكيتوري</span>
       </h1>
       <p class="hero-desc">مجتمع اجتماعي يجمع المحبين للألعاب والمحادثات. بيئة مرحة وودية منذ يونيو 2022.</p>
-      <div class="hero-btns" style="display: flex; gap: 15px; align-items: center;">
-  <!-- زر انضم للسيرفر بتنسيق يدوي لإصلاح الشكل -->
-  <a href="https://discord.gg/yka" 
-     class="btn-primary" 
-     style="display: inline-block; padding: 12px 25px; text-decoration: none; border-radius: 8px; white-space: nowrap; line-height: 1; text-align: center;">
-     انضم للسيرفر
-  </a>
-  
-  <a href="index.html#rules" class="btn btn-outline">القوانين</a>
-</div>
-    <div class="hero-visual">
-      <div class="hero-img-wrap">
-        <img src="assets/server-rules-banner.webp" alt="Yakitori" onerror="this.style.display='none';this.parentElement.style.background='var(--red-dim)';this.parentElement.style.minHeight='280px'">
+      
+      <div class="hero-btns" style="display: flex; gap: 15px; margin-top: 20px;">
+        <a href="https://discord.gg/yka" 
+           class="btn-primary" 
+           style="display: inline-block; padding: 12px 28px; text-decoration: none; border-radius: 10px; white-space: nowrap; font-weight: bold;">
+           انضم للسيرفر
+        </a>
+        <a href="index.html#rules" 
+           class="btn btn-outline" 
+           style="display: inline-block; padding: 12px 28px; text-decoration: none; border-radius: 10px; white-space: nowrap;">
+           القوانين
+        </a>
       </div>
     </div>
+
+    <div class="hero-visual" style="flex: 1; display: flex; justify-content: center;">
+      <div class="hero-img-wrap" style="width: 100%; max-width: 500px;">
+        <img src="assets/img/server-rules-banner.webp" 
+             alt="Yakitori" 
+             style="width: 100%; height: auto; border-radius: 20px; display: block;"
+             onerror="this.style.display='none';this.parentElement.style.background='var(--red-dim)';this.parentElement.style.minHeight='280px'">
+      </div>
+    </div>
+
   </div>
 </section>
 
