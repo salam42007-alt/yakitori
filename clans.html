@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yakitori — الكلانات</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YAKITORI</a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="index.html#rules">القوانين</a></li>
+      <li><a href="index.html#faq">الأسئلة</a></li>
+      <li><a href="clans.html" class="active">الكلانات</a></li>
+      <li><a href="challenges.html">التحديات</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="#" class="nav-discord">Discord ↗</a></li>
+    </ul>
+    <button class="nav-menu-btn" onclick="toggleMobileNav()">☰</button>
+  </div>
+  <div class="nav-mobile" id="mobileNav">
+    <a href="index.html">الرئيسية</a>
+    <a href="index.html#rules">القوانين</a>
+    <a href="clans.html" class="active">الكلانات</a>
+    <a href="challenges.html">التحديات</a>
+    <a href="dashboard.html">لوحة التحكم</a>
+    <a href="#">Discord ↗</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div style="padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);background:var(--off)">
+  <div class="page">
+    <div class="sec-label">المجتمع</div>
+    <h1 class="sec-title"><span class="grad">الكلانات</span></h1>
+    <div class="divider"></div>
+    <p class="sec-sub">انضم إلى أحد الكلانات النشطة وكن جزءًا من مجتمع ياكيتوري.</p>
+  </div>
+</div>
+
+<!-- CLANS GRID -->
+<section class="section">
+  <div class="page">
+    <div class="clans-grid">
+
+      <!-- Hello Kitty / PH -->
+      <div class="clan-card">
+        <img class="clan-banner" src="assets/clans/hellokitty.webp" alt="PH Pink Hearts" onerror="this.style.display='none'">
+        <div class="clan-body">
+          <div class="clan-name">
+            <div class="clan-symbol" style="background:#fce7f3;color:#db2777;border-color:#fbcfe8">PH</div>
+            Pink Hearts كلان
+          </div>
+          <p class="clan-desc">كلان نشيط دائم مليء بالفعاليات والحماس. أجواء عائلية ودعم مستمر للأعضاء.</p>
+          <ul class="clan-features">
+            <li>فعاليات يومية وحماس دائم</li>
+            <li>أعضاء متعاونين وأجواء عائلية</li>
+            <li>جوائز ومسابقات بشكل مستمر</li>
+            <li>تطوير مستمر للكلان ودعم الأعضاء</li>
+            <li>شات نشيط 24/7</li>
+          </ul>
+          <button class="clan-rules-toggle" onclick="toggleRules(this)">
+            القوانين <span>▾</span>
+          </button>
+          <div class="clan-rules-body">
+            <ul class="clan-rules-list">
+              <li>احترام جميع الأعضاء وهدم التقليل من أحد</li>
+              <li>الالتزام بتعليمات الإدارة</li>
+              <li>عدم إثارة المشاكل أو الدراما</li>
+              <li>التفاعل المستمر وعدم السحب الطويل</li>
+              <li>وضع شعار الكلان (إجباري)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kamisato -->
+      <div class="clan-card">
+        <img class="clan-banner" src="assets/clans/kamisato.webp" alt="Kamisato" onerror="this.style.display='none'">
+        <div class="clan-body">
+          <div class="clan-name">
+            <div class="clan-symbol" style="background:#eff6ff;color:#3b82f6;border-color:#bfdbfe">K</div>
+            Kamisato Clan
+          </div>
+          <p class="clan-desc">ركننا الصغير — لن تجد فيه ما يخالفك من رأي أو وجهة نظر. نسعى لأن نكون الأول في نظر الأعضاء.</p>
+          <ul class="clan-features">
+            <li>حوارات هادئة ومريحة</li>
+            <li>المنشن لا يكون إلا للضرورة</li>
+            <li>خارج عن المألوف</li>
+            <li>نترك أثراً حسناً</li>
+            <li>الاحترام صمت جميل</li>
+          </ul>
+          <button class="clan-rules-toggle" onclick="toggleRules(this)">
+            القوانين <span>▾</span>
+          </button>
+          <div class="clan-rules-body">
+            <ul class="clan-rules-list">
+              <li>يمنع التنابز بالألقاب أو الألفاظ النابية</li>
+              <li>احترام خصوصية الأعضاء</li>
+              <li>يمنع ذكر أو ترويج لسيرفر آخر في الكلان</li>
+              <li>يرجى احترام بقية أعضاء الكلانات المجاورة</li>
+              <li>الإساءة للكلانات الأخرى بسبب الخسارة يعرضك للطرد مباشرة</li>
+              <li>يمنع تجاوز الحدود الشرعية بين الجنسين في الحديث</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wonderland -->
+      <div class="clan-card">
+        <img class="clan-banner" src="assets/clans/wonderland.webp" alt="Wonderland" onerror="this.style.display='none'">
+        <div class="clan-body">
+          <div class="clan-name">
+            <div class="clan-symbol" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0">ʷ</div>
+            Wonderland Clan
+          </div>
+          <p class="clan-desc">كلان يجمع بين التفاعل المستمر والجوائز المتنوعة. تحديات داخلية لزيادة الحماس بين الأعضاء.</p>
+          <ul class="clan-features">
+            <li>نيترو قيمينغ شهريًا لأكثر عضو تفاعلاً</li>
+            <li>قيف أويز على كردت وأشياء متنوعة</li>
+            <li>تحديات داخل الكلان لزيادة الحماس</li>
+            <li>تفاعل مستمر بين الأعضاء</li>
+          </ul>
+          <button class="clan-rules-toggle" onclick="toggleRules(this)">
+            القوانين <span>▾</span>
+          </button>
+          <div class="clan-rules-body">
+            <ul class="clan-rules-list">
+              <li>التفاعل والمشاركة مع الكلان</li>
+              <li>احترام جميع الأعضاء والالتزام بقوانين السيرفر</li>
+              <li>وضع شعار الكلان: ʷ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hollow -->
+      <div class="clan-card">
+        <img class="clan-banner" src="assets/clans/hollow.webp" alt="Hollow" onerror="this.style.display='none'">
+        <div class="clan-body">
+          <div class="clan-name">
+            <div class="clan-symbol" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe">๑</div>
+            Hollow Clan
+          </div>
+          <p class="clan-desc">كلان يرحب بالجميع مهما كان ذوقك. تفاعل دائم ومتواصل، واحترام بين الأعضاء والتعاون فيما بينهم.</p>
+          <ul class="clan-features">
+            <li>تفاعل دائم ومتواصل</li>
+            <li>احترام بين الأعضاء والتعاون</li>
+            <li>الترحيب بالجميع مهما كان ذوقك</li>
+            <li>فعاليات ومسابقات أسبوعية</li>
+            <li>تلبية طلبات الأعضاء والاستماع لهم</li>
+          </ul>
+          <button class="clan-rules-toggle" onclick="toggleRules(this)">
+            القوانين <span>▾</span>
+          </button>
+          <div class="clan-rules-body">
+            <ul class="clan-rules-list">
+              <li>احترام الأعضاء وعدم التقليل من أحد</li>
+              <li>الالتزام بتعليمات القائد والنائب</li>
+              <li>عدم إثارة مشاكل داخل الكلان بين الأعضاء</li>
+              <li>تفاعل جيد أسبوعيًا</li>
+              <li>وضع شعار الكلان: ๑</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Genesis -->
+      <div class="clan-card">
+        <img class="clan-banner" src="assets/clans/genesis.webp" alt="Genesis Clan" onerror="this.style.display='none'">
+        <div class="clan-body">
+          <div class="clan-name">
+            <div class="clan-symbol" style="background:#f0fdf4;color:#15803d;border-color:#bbf7d0">❀</div>
+            Genesis Clan
+          </div>
+          <p class="clan-desc">كلان يهدف لأن يكون بيتك الثاني ويمنحك فرصة الاستمتاع بأوقات فراغك والتعرف على أشخاص من اهتماماتك.</p>
+          <ul class="clan-features">
+            <li>فعاليات متنوعة مع أصدقائك الجدد</li>
+            <li>جوائز متنوعة لكل الأعضاء</li>
+            <li>بطولات لإبراز مواهبك</li>
+          </ul>
+          <button class="clan-rules-toggle" onclick="toggleRules(this)">
+            القوانين <span>▾</span>
+          </button>
+          <div class="clan-rules-body">
+            <ul class="clan-rules-list">
+              <li>يمنع الإساءة أو التحدث بطريقة مهينة مع أي شخص أو على اهتماماته</li>
+              <li>يمنع التلميح عن الأشياء المخلة</li>
+              <li>يمنع السب والشتم</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">YAKITORI</div>
+    <div class="footer-copy">© Yakitori Community · 2022 – 2026</div>
+    <div class="footer-links">
+      <a href="index.html#rules">القوانين</a>
+      <a href="challenges.html">التحديات</a>
+      <a href="#">Discord</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+function toggleRules(btn){
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.querySelector('span').textContent = body.classList.contains('open') ? '▴' : '▾';
+}
+</script>
+</body>
+</html>
