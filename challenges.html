@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yakitori — التحديات</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YAKITORI</a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="index.html#rules">القوانين</a></li>
+      <li><a href="index.html#faq">الأسئلة</a></li>
+      <li><a href="clans.html">الكلانات</a></li>
+      <li><a href="challenges.html" class="active">التحديات</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="#" class="nav-discord">Discord ↗</a></li>
+    </ul>
+    <button class="nav-menu-btn" onclick="toggleMobileNav()">☰</button>
+  </div>
+  <div class="nav-mobile" id="mobileNav">
+    <a href="index.html">الرئيسية</a>
+    <a href="clans.html">الكلانات</a>
+    <a href="challenges.html" class="active">التحديات</a>
+    <a href="dashboard.html">لوحة التحكم</a>
+    <a href="#">Discord ↗</a>
+  </div>
+</nav>
+
+<div style="padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);background:var(--off)">
+  <div class="page">
+    <div class="sec-label">يومي · أسبوعي</div>
+    <h1 class="sec-title"><span class="grad">التحديات</span> والمكافآت</h1>
+    <div class="divider"></div>
+    <p class="sec-sub">تحديات يومية بثلاثة مستويات + عجلة الحظ الأسبوعية + Easter Egg مخفي.</p>
+  </div>
+</div>
+
+<!-- DAILY CHALLENGES -->
+<section class="section">
+  <div class="page">
+    <div class="sec-header">
+      <div class="sec-label">كل يوم</div>
+      <h2 class="sec-title">التحديات <span class="grad">اليومية</span></h2>
+      <div class="divider"></div>
+      <p class="sec-sub">تتجدد التحديات كل يوم. أكمل تحديك واحصل على مكافآتك.</p>
+    </div>
+
+    <div id="challengesGrid" class="challenges-grid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div style="margin-top:1.5rem;padding:1.25rem;background:var(--off);border:1px solid var(--border);border-radius:var(--radius);font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.75rem">
+      <span style="font-size:1.2rem">⏰</span>
+      <span>تتحدث التحديات في منتصف الليل. لإرسال إثبات أو المطالبة بمكافأة توجه للديسكورد.</span>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" style="margin:0">
+
+<!-- SPIN WHEEL + EASTER EGG side by side -->
+<section class="section">
+  <div class="page">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+
+      <!-- WHEEL -->
+      <div>
+        <div class="sec-label">كل أسبوع</div>
+        <h2 class="sec-title" style="margin-bottom:.5rem">عجلة <span class="grad">الحظ</span></h2>
+        <div class="divider"></div>
+        <p class="sec-sub" style="margin-bottom:2rem">تلفة واحدة في الأسبوع — حظك يحدد مكافأتك!</p>
+
+        <div class="wheel-wrap">
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:.5rem">الأسبوع الحالي</p>
+          <div class="wheel-canvas-wrap">
+            <div class="wheel-needle">▼</div>
+            <canvas id="wheelCanvas" width="280" height="280"></canvas>
+          </div>
+          <div class="wheel-result" id="wheelResult"></div>
+          <div class="wheel-next" id="wheelNext"></div>
+          <button class="btn btn-primary" style="margin-top:1.25rem;width:100%;justify-content:center" onclick="spinWheel()" id="spinBtn">
+            تلف العجلة
+          </button>
+          <p style="font-size:.75rem;color:var(--muted2);margin-top:.75rem">* يتطلب تسجيل الدخول بالديسكورد</p>
+        </div>
+      </div>
+
+      <!-- EASTER EGG -->
+      <div>
+        <div class="sec-label">أسبوعي · مخفي</div>
+        <h2 class="sec-title" style="margin-bottom:.5rem"><span class="grad">Easter Egg</span></h2>
+        <div class="divider"></div>
+        <p class="sec-sub" style="margin-bottom:2rem">كل أسبوع هناك شيء مخفي في الموقع. الفائز بإيجاده يحصل على جائزة!</p>
+
+        <div style="background:var(--off);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🥚</div>
+          <h3 style="font-family:'Cinzel',serif;font-size:1rem;font-weight:700;margin-bottom:.5rem">تلميح هذا الأسبوع</h3>
+          <div id="eggHint" style="font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;padding:.75rem 1rem;background:white;border:1px solid var(--border);border-radius:var(--radius)">
+            🔍 ابحث عن شيء مخفي في الموقع...
+          </div>
+
+          <div style="margin-bottom:1.25rem">
+            <label style="display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:.4rem">أدخل الكود السري</label>
+            <div style="display:flex;gap:.5rem">
+              <input type="text" id="eggInput" placeholder="الكود المخفي..." style="flex:1;padding:.65rem .9rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:.875rem;outline:none;transition:border-color .2s;direction:ltr;text-align:center;letter-spacing:3px" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+              <button class="btn btn-primary btn-sm" onclick="submitEgg()">إرسال</button>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--border);padding-top:1rem">
+            <div style="font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">الفائزون هذا الأسبوع</div>
+            <div id="eggWinners" style="font-size:.85rem;color:var(--muted)">لا يوجد فائزون بعد — كن الأول!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" style="margin:0">
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="page">
+    <div class="sec-header center">
+      <div class="sec-label">المجتمع</div>
+      <h2 class="sec-title">آراء <span class="grad">الأعضاء</span></h2>
+      <div class="divider center"></div>
+      <p class="sec-sub">شاركنا رأيك في السيرفر وتجربتك معنا.</p>
+    </div>
+
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- loaded from Supabase -->
+    </div>
+
+    <!-- Add Review Form -->
+    <div style="display:flex;justify-content:center;margin-top:1rem">
+      <div class="review-form">
+        <h3>✍️ أضف رأيك</h3>
+        <div class="form-group">
+          <label>اسمك في الديسكورد</label>
+          <input type="text" id="reviewName" placeholder="username#0000" style="width:100%;padding:.65rem .9rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:.875rem;outline:none;transition:border-color .2s;direction:rtl" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div class="form-group">
+          <label>تقييمك</label>
+          <div class="stars-input" id="starsInput">
+            <button class="star-btn" onclick="setRating(1)">★</button>
+            <button class="star-btn" onclick="setRating(2)">★</button>
+            <button class="star-btn" onclick="setRating(3)">★</button>
+            <button class="star-btn" onclick="setRating(4)">★</button>
+            <button class="star-btn" onclick="setRating(5)">★</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>رأيك</label>
+          <textarea id="reviewText" rows="3" placeholder="شاركنا تجربتك مع سيرفر ياكيتوري..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitReview()">إرسال الرأي</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">YAKITORI</div>
+    <div class="footer-copy">© Yakitori Community · 2022 – 2026</div>
+    <div class="footer-links">
+      <a href="index.html#rules">القوانين</a>
+      <a href="clans.html">الكلانات</a>
+      <a href="#">Discord</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── SUPABASE CONFIG (replace with your keys) ───
+const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
+const SUPABASE_KEY = 'YOUR_ANON_KEY';
+
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+function showToast(msg,ok=true){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=ok?'var(--text)':'var(--red)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ─── CHALLENGES ───
+const CHALLENGES = {
+  easy: [
+    {title:'المحادث النشيط', desc:'أرسل 50 رسالة في السيرفر اليوم', rewards:['200 XP','500 كردت']},
+    {title:'الصوتي المبدع', desc:'اقضِ 30 دقيقة في قناة صوتية', rewards:['300 XP','700 كردت']},
+  ],
+  medium: [
+    {title:'جامع الـ XP', desc:'احصل على 1000 XP في يوم واحد', rewards:['600 XP','1500 كردت']},
+    {title:'نجم الصوت', desc:'كن الأكثر تحدثًا في القنوات الصوتية اليوم', rewards:['800 XP','2000 كردت']},
+  ],
+  hard: [
+    {title:'أسطورة الكتابة', desc:'احصل على 2000 XP كتابي اليوم', rewards:['1500 XP','5000 كردت']},
+    {title:'توب 1 الصوت', desc:'احتل المرتبة الأولى صوتيًا اليوم', rewards:['2000 XP','8000 كردت','رتبة خاصة']},
+  ]
+};
+
+function renderChallenges(){
+  const grid = document.getElementById('challengesGrid');
+  const levels = [
+    {key:'easy', label:'سهل', cls:'easy', icon:'🟢'},
+    {key:'medium', label:'متوسط', cls:'medium', icon:'🟡'},
+    {key:'hard', label:'صعب', cls:'hard', icon:'🔴'},
+  ];
+  grid.innerHTML = levels.map(lv => `
+    <div>
+      <div class="challenge-col-header ${lv.cls}">
+        <span class="col-label ${lv.cls}">${lv.icon} ${lv.label}</span>
+        <span class="badge badge-gray" style="font-size:.7rem">${CHALLENGES[lv.key].length} تحديات</span>
+      </div>
+      <div class="challenge-cards">
+        ${CHALLENGES[lv.key].map(c=>`
+          <div class="challenge-card">
+            <div class="ch-title">${c.title}</div>
+            <div class="ch-desc">${c.desc}</div>
+            <div class="ch-rewards">${c.rewards.map(r=>`<span class="ch-reward">${r}</span>`).join('')}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+renderChallenges();
+
+// ─── WHEEL ───
+const PRIZES = [
+  {label:'500 كردت',    color:'#fde68a', weight:20},
+  {label:'1000 كردت',   color:'#fbbf24', weight:15},
+  {label:'2M كردت 🤑',  color:'#c0392b', weight:2},
+  {label:'500 XP',      color:'#bbf7d0', weight:18},
+  {label:'رتبة خاصة ⭐',color:'#ddd6fe', weight:3},
+  {label:'تلف مجاني 🎰', color:'#bfdbfe', weight:8},
+  {label:'ولا شيء 😅',  color:'#e5e7eb', weight:25},
+  {label:'مفاجأة 🎁',   color:'#fed7aa', weight:5},
+];
+
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+let spinning = false;
+let currentAngle = 0;
+
+function drawWheel(rotation=0){
+  const cx=140, cy=140, r=130;
+  const total = PRIZES.reduce((s,p)=>s+p.weight,0);
+  let start = rotation;
+  ctx.clearRect(0,0,280,280);
+  PRIZES.forEach((p,i)=>{
+    const slice = (p.weight/total)*Math.PI*2;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,start,start+slice);
+    ctx.closePath();
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    ctx.strokeStyle='white';
+    ctx.lineWidth=2;
+    ctx.stroke();
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.rotate(start+slice/2);
+    ctx.textAlign='right';
+    ctx.fillStyle='#1a1010';
+    ctx.font='bold 11px Noto Sans Arabic, sans-serif';
+    ctx.fillText(p.label, r-10, 4);
+    ctx.restore();
+    start+=slice;
+  });
+  // center circle
+  ctx.beginPath();
+  ctx.arc(cx,cy,18,0,Math.PI*2);
+  ctx.fillStyle='white';
+  ctx.fill();
+  ctx.strokeStyle='#e8e0e0';
+  ctx.lineWidth=2;
+  ctx.stroke();
+}
+drawWheel();
+
+function getWeightedPrize(){
+  const total = PRIZES.reduce((s,p)=>s+p.weight,0);
+  let r=Math.random()*total;
+  for(const p of PRIZES){ r-=p.weight; if(r<=0) return p; }
+  return PRIZES[PRIZES.length-1];
+}
+
+function spinWheel(){
+  if(spinning) return;
+  // Check if already spun this week (localStorage as demo — real check via Supabase)
+  const key = `spin_${getWeekYear()}`;
+  if(localStorage.getItem(key)){
+    const next = getNextMonday();
+    document.getElementById('wheelNext').textContent = `التلفة القادمة: ${next}`;
+    showToast('لقد استخدمت تلفتك هذا الأسبوع!', false);
+    return;
+  }
+  spinning=true;
+  document.getElementById('spinBtn').disabled=true;
+  document.getElementById('wheelResult').textContent='';
+
+  const prize = getWeightedPrize();
+  const total = PRIZES.reduce((s,p)=>s+p.weight,0);
+  let targetAngle=0, cumulative=0;
+  for(const p of PRIZES){
+    const slice=(p.weight/total)*Math.PI*2;
+    if(p===prize){ targetAngle=cumulative+slice/2; break; }
+    cumulative+=slice;
+  }
+
+  const spins = Math.PI*2*5;
+  const finalAngle = spins - targetAngle + Math.PI*1.5;
+  const duration = 4000;
+  const start = performance.now();
+  const startAngle = currentAngle;
+
+  function animate(now){
+    const elapsed=now-start;
+    const t=Math.min(elapsed/duration,1);
+    const ease=1-Math.pow(1-t,4);
+    currentAngle=startAngle+finalAngle*ease;
+    drawWheel(currentAngle);
+    if(t<1){ requestAnimationFrame(animate); return; }
+    spinning=false;
+    document.getElementById('wheelResult').textContent='🎉 ' + prize.label;
+    document.getElementById('spinBtn').disabled=false;
+    localStorage.setItem(key,'1');
+    const next=getNextMonday();
+    document.getElementById('wheelNext').textContent=`التلفة القادمة: ${next}`;
+    showToast('مبروك! حصلت على: ' + prize.label);
+    // TODO: record in Supabase
+  }
+  requestAnimationFrame(animate);
+}
+
+function getWeekYear(){
+  const d=new Date();
+  const jan1=new Date(d.getFullYear(),0,1);
+  const week=Math.ceil((((d-jan1)/86400000)+jan1.getDay()+1)/7);
+  return `${d.getFullYear()}_w${week}`;
+}
+function getNextMonday(){
+  const d=new Date();
+  const day=d.getDay();
+  const diff=(8-day)%7||7;
+  const next=new Date(d.getTime()+diff*86400000);
+  return next.toLocaleDateString('ar-SA',{weekday:'long',month:'long',day:'numeric'});
+}
+
+// Check if already spun
+(function(){
+  const key=`spin_${getWeekYear()}`;
+  if(localStorage.getItem(key)){
+    document.getElementById('spinBtn').disabled=true;
+    document.getElementById('spinBtn').textContent='تم التلف هذا الأسبوع';
+    document.getElementById('wheelNext').textContent=`التلفة القادمة: ${getNextMonday()}`;
+  }
+})();
+
+// ─── EASTER EGG ───
+function submitEgg(){
+  const code = document.getElementById('eggInput').value.trim().toUpperCase();
+  if(!code){ showToast('أدخل الكود أولاً',false); return; }
+  // TODO: validate against Supabase easter_eggs table
+  // For now, demo check
+  if(code==='YAKI2026'){
+    showToast('🎉 مبروك! وجدت البيضة!');
+    document.getElementById('eggInput').value='';
+    document.getElementById('eggWinners').innerHTML='<span style="color:var(--red);font-weight:600">أنت! 🎉</span>';
+  } else {
+    showToast('كود خاطئ — حاول مجددًا',false);
+  }
+}
+
+// ─── REVIEWS ───
+let selectedRating = 0;
+const sampleReviews = [
+  {rating:5, text:'سيرفر رائع وأجواء عائلية جداً. أنصح الجميع بالانضمام!', author:'عضو مجهول'},
+  {rating:4, text:'تجربة ممتازة، الإدارة محترمة والتفاعل عالي دائمًا.', author:'عضو مجهول'},
+  {rating:5, text:'أفضل سيرفر عربي جربته. الكلانات والتحديات تضيف متعة كبيرة.', author:'عضو مجهول'},
+];
+
+function renderReviews(reviews){
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = reviews.map(r=>`
+    <div class="review-card">
+      <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+      <p class="review-text">${r.text}</p>
+      <div class="review-author">${r.author}</div>
+    </div>
+  `).join('');
+}
+renderReviews(sampleReviews);
+// TODO: load from Supabase:
+// fetch(`${SUPABASE_URL}/rest/v1/reviews?is_deleted=eq.false&is_approved=eq.true&order=created_at.desc`,
+//   {headers:{'apikey':SUPABASE_KEY}}).then(r=>r.json()).then(renderReviews)
+
+function setRating(n){
+  selectedRating=n;
+  document.querySelectorAll('.star-btn').forEach((b,i)=>{
+    b.classList.toggle('active',i<n);
+  });
+}
+
+function submitReview(){
+  const name=document.getElementById('reviewName').value.trim();
+  const text=document.getElementById('reviewText').value.trim();
+  if(!name||!text||!selectedRating){ showToast('يرجى ملء جميع الحقول',false); return; }
+  if(text.length<10){ showToast('الرأي قصير جداً',false); return; }
+  // TODO: insert into Supabase reviews table
+  showToast('شكرًا! تم إرسال رأيك وسيظهر بعد المراجعة.');
+  document.getElementById('reviewName').value='';
+  document.getElementById('reviewText').value='';
+  setRating(0);
+}
+</script>
+</body>
+</html>
