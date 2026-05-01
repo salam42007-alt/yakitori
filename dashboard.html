@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yakitori — لوحة التحكم</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YAKITORI</a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="index.html#rules">القوانين</a></li>
+      <li><a href="index.html#faq">الأسئلة</a></li>
+      <li><a href="clans.html">الكلانات</a></li>
+      <li><a href="challenges.html">التحديات</a></li>
+      <li><a href="dashboard.html" class="active">لوحة التحكم</a></li>
+      <li><a href="#" class="nav-discord">Discord ↗</a></li>
+    </ul>
+    <button class="nav-menu-btn" onclick="toggleMobileNav()">☰</button>
+  </div>
+  <div class="nav-mobile" id="mobileNav">
+    <a href="index.html">الرئيسية</a>
+    <a href="clans.html">الكلانات</a>
+    <a href="challenges.html">التحديات</a>
+    <a href="dashboard.html" class="active">لوحة التحكم</a>
+    <a href="#">Discord ↗</a>
+  </div>
+</nav>
+
+<div style="padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);background:var(--off)">
+  <div class="page">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="sec-label">إدارة الموقع</div>
+        <h1 class="sec-title" style="margin-bottom:.25rem"><span class="grad">لوحة التحكم</span></h1>
+      </div>
+      <!-- Dashboard Toggle -->
+      <div style="display:flex;gap:.5rem;background:white;border:1px solid var(--border);border-radius:var(--radius);padding:.3rem">
+        <button class="dash-mode-btn active" id="btnSite" onclick="switchDashboard('site')">🌐 الموقع</button>
+        <button class="dash-mode-btn" id="btnBot" onclick="switchDashboard('bot')">🤖 السيرفر</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.dash-mode-btn{background:none;border:none;cursor:pointer;padding:.45rem 1rem;border-radius:6px;font-size:.85rem;font-weight:600;color:var(--muted);font-family:inherit;transition:all .2s}
+.dash-mode-btn.active{background:var(--red-dim);color:var(--red)}
+</style>
+
+<!-- SITE DASHBOARD -->
+<div id="siteDash" style="display:block">
+<section class="section">
+<div class="page">
+  <div class="dash-layout">
+
+    <!-- SIDEBAR -->
+    <div class="dash-sidebar">
+      <div class="dash-sidebar-title">القسم</div>
+      <ul class="dash-nav">
+        <li><a href="#" class="active" onclick="showSection('overview',this)">📊 نظرة عامة</a></li>
+        <li><a href="#" onclick="showSection('reviews',this)">💬 الآراء</a></li>
+        <li><a href="#" onclick="showSection('clans',this)">🏆 الكلانات</a></li>
+        <li><a href="#" onclick="showSection('challenges',this)">⚡ التحديات</a></li>
+        <li><a href="#" onclick="showSection('wheel',this)">🎰 العجلة</a></li>
+        <li><a href="#" onclick="showSection('eggs',this)">🥚 Easter Eggs</a></li>
+        <li><a href="#" onclick="showSection('leaderboard',this)">🥇 لوحة الشرف</a></li>
+        <li><a href="#" onclick="showSection('settings',this)">⚙️ الإعدادات</a></li>
+      </ul>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="dash-content">
+
+      <!-- OVERVIEW -->
+      <div class="dash-section active" id="sec-overview">
+        <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">نظرة عامة</h2>
+        <div class="dash-grid-3" style="margin-bottom:1rem">
+          <div class="dash-card">
+            <h4>إجمالي الأعضاء</h4>
+            <div class="big-num" id="d-total">—</div>
+            <div class="sub-text">مسجلين في الموقع</div>
+          </div>
+          <div class="dash-card">
+            <h4>الآراء المنشورة</h4>
+            <div class="big-num" id="d-reviews">—</div>
+            <div class="sub-text">رأي معتمد</div>
+          </div>
+          <div class="dash-card">
+            <h4>التحديات اليوم</h4>
+            <div class="big-num" id="d-challenges">6</div>
+            <div class="sub-text">تحدي نشط</div>
+          </div>
+        </div>
+        <div class="dash-grid-2">
+          <div class="dash-card">
+            <h4>تلفات العجلة هذا الأسبوع</h4>
+            <div class="big-num" id="d-spins">—</div>
+            <div class="sub-text">تلفة مسجلة</div>
+          </div>
+          <div class="dash-card">
+            <h4>فائزو Easter Egg</h4>
+            <div class="big-num" id="d-eggs">—</div>
+            <div class="sub-text">هذا الأسبوع</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REVIEWS -->
+      <div class="dash-section" id="sec-reviews">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem">
+          <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700">إدارة الآراء</h2>
+          <div style="display:flex;gap:.5rem">
+            <select style="padding:.4rem .75rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:.8rem;outline:none" onchange="filterReviews(this.value)">
+              <option value="all">الكل</option>
+              <option value="pending">قيد المراجعة</option>
+              <option value="approved">معتمد</option>
+            </select>
+          </div>
+        </div>
+        <div class="dash-card">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>المستخدم</th>
+                <th>التقييم</th>
+                <th>الرأي</th>
+                <th>التاريخ</th>
+                <th>الحالة</th>
+                <th>إجراء</th>
+              </tr>
+            </thead>
+            <tbody id="reviewsTable">
+              <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">يتم تحميل الآراء...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CLANS -->
+      <div class="dash-section" id="sec-clans">
+        <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">إدارة الكلانات</h2>
+        <div class="dash-grid-2" style="margin-bottom:1rem">
+          <div class="dash-card">
+            <h4>إجمالي الكلانات</h4>
+            <div class="big-num">5</div>
+          </div>
+          <div class="dash-card">
+            <h4>إجمالي الأعضاء في الكلانات</h4>
+            <div class="big-num" id="d-clan-members">—</div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <table class="dash-table">
+            <thead>
+              <tr><th>الكلان</th><th>الرمز</th><th>عدد الأعضاء</th><th>الحالة</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Pink Hearts</td><td>PH</td><td>—</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>Kamisato</td><td>K</td><td>—</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>Wonderland</td><td>ʷ</td><td>—</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>Hollow</td><td>๑</td><td>—</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>Genesis</td><td>❀</td><td>—</td><td><span class="badge badge-red">نشط</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CHALLENGES -->
+      <div class="dash-section" id="sec-challenges">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem">
+          <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700">إدارة التحديات</h2>
+          <button class="btn btn-primary btn-sm">+ إضافة تحدي</button>
+        </div>
+        <div class="dash-card">
+          <table class="dash-table">
+            <thead>
+              <tr><th>العنوان</th><th>المستوى</th><th>النوع</th><th>الهدف</th><th>المكافأة</th><th>الحالة</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>المحادث النشيط</td><td><span class="badge badge-gray">سهل</span></td><td>كتابي</td><td>50 رسالة</td><td>200 XP</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>الصوتي المبدع</td><td><span class="badge badge-gray">سهل</span></td><td>صوتي</td><td>30 دقيقة</td><td>300 XP</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>جامع الـ XP</td><td><span class="badge" style="background:#fffbeb;color:#d97706;border:1px solid #fde68a">متوسط</span></td><td>كتابي</td><td>1000 XP</td><td>600 XP</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>نجم الصوت</td><td><span class="badge" style="background:#fffbeb;color:#d97706;border:1px solid #fde68a">متوسط</span></td><td>صوتي</td><td>توب 1</td><td>800 XP</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>أسطورة الكتابة</td><td><span class="badge badge-red">صعب</span></td><td>كتابي</td><td>2000 XP</td><td>1500 XP</td><td><span class="badge badge-red">نشط</span></td></tr>
+              <tr><td>توب 1 الصوت</td><td><span class="badge badge-red">صعب</span></td><td>صوتي</td><td>توب 1</td><td>2000 XP</td><td><span class="badge badge-red">نشط</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- WHEEL -->
+      <div class="dash-section" id="sec-wheel">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem">
+          <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700">إدارة عجلة الحظ</h2>
+          <button class="btn btn-primary btn-sm">+ إضافة جائزة</button>
+        </div>
+        <div class="dash-card">
+          <table class="dash-table">
+            <thead>
+              <tr><th>الجائزة</th><th>النوع</th><th>القيمة</th><th>الوزن</th><th>إجراء</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>500 كردت</td><td>كردت</td><td>500</td><td>20</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>1000 كردت</td><td>كردت</td><td>1000</td><td>15</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>2M كردت</td><td>كردت</td><td>2,000,000</td><td>2</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>500 XP</td><td>XP</td><td>500</td><td>18</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>رتبة خاصة</td><td>رتبة</td><td>—</td><td>3</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>تلف مجاني</td><td>تلف</td><td>—</td><td>8</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>ولا شيء</td><td>—</td><td>—</td><td>25</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+              <tr><td>مفاجأة</td><td>خاص</td><td>—</td><td>5</td><td><button class="btn btn-ghost btn-sm">تعديل</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- EGGS -->
+      <div class="dash-section" id="sec-eggs">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem">
+          <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700">Easter Eggs الأسبوعية</h2>
+          <button class="btn btn-primary btn-sm">+ بيضة جديدة</button>
+        </div>
+        <div class="dash-card" style="margin-bottom:1rem">
+          <h4 style="margin-bottom:1rem">إنشاء / تعديل بيضة الأسبوع</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <div>
+              <label style="display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:.4rem">الكود السري</label>
+              <input type="text" id="eggCode" placeholder="YAKI2026" style="width:100%;padding:.65rem .9rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:.875rem;outline:none;direction:ltr;letter-spacing:2px" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <div>
+              <label style="display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:.4rem">التلميح المعلن</label>
+              <input type="text" id="eggHintInput" placeholder="ابحث عن..." style="width:100%;padding:.65rem .9rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:.875rem;outline:none" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveEgg()">حفظ البيضة</button>
+        </div>
+        <div class="dash-card">
+          <h4 style="margin-bottom:1rem">سجل الفائزين</h4>
+          <table class="dash-table">
+            <thead>
+              <tr><th>الأسبوع</th><th>الكود</th><th>الفائز</th><th>التاريخ</th></tr>
+            </thead>
+            <tbody id="eggsTable">
+              <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:2rem">لا يوجد سجل بعد</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- LEADERBOARD -->
+      <div class="dash-section" id="sec-leaderboard">
+        <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">🥇 لوحة الشرف</h2>
+        <div class="dash-card">
+          <table class="dash-table">
+            <thead>
+              <tr><th>#</th><th>الاسم</th><th>الكلان</th><th>XP</th><th>المستوى</th><th>الكردت</th></tr>
+            </thead>
+            <tbody id="leaderboardTable">
+              <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">يتم التحميل...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="dash-section" id="sec-settings">
+        <h2 style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">⚙️ إعدادات الموقع</h2>
+        <div class="dash-card" style="max-width:520px">
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div>
+              <label style="display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:.4rem">رابط الديسكورد</label>
+              <input type="text" value="https://discord.gg/yakitori" style="width:100%;padding:.65rem .9rem;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:.875rem;outline:none;direction:ltr" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-top:1px solid var(--border)">
+              <div>
+                <div style="font-size:.875rem;font-weight:600">تفعيل عجلة الحظ</div>
+                <div style="font-size:.78rem;color:var(--muted)">السماح للأعضاء بالتلف الأسبوعي</div>
+              </div>
+              <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+                <input type="checkbox" checked style="opacity:0;width:0;height:0" onchange="toggleSetting('wheel_enabled',this.checked)">
+                <span style="position:absolute;inset:0;background:var(--grad);border-radius:100px;transition:.3s"></span>
+                <span style="position:absolute;top:3px;right:3px;width:18px;height:18px;background:white;border-radius:50%;transition:.3s"></span>
+              </label>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-top:1px solid var(--border)">
+              <div>
+                <div style="font-size:.875rem;font-weight:600">تفعيل التحديات</div>
+                <div style="font-size:.78rem;color:var(--muted)">عرض التحديات اليومية للأعضاء</div>
+              </div>
+              <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+                <input type="checkbox" checked style="opacity:0;width:0;height:0" onchange="toggleSetting('challenges_enabled',this.checked)">
+                <span style="position:absolute;inset:0;background:var(--grad);border-radius:100px;transition:.3s"></span>
+                <span style="position:absolute;top:3px;right:3px;width:18px;height:18px;background:white;border-radius:50%;transition:.3s"></span>
+              </label>
+            </div>
+            <div style="padding-top:.5rem">
+              <button class="btn btn-primary" onclick="saveSettings()">حفظ الإعدادات</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end dash-content -->
+  </div><!-- end dash-layout -->
+</div><!-- end page -->
+</section>
+</div><!-- end siteDash -->
+
+<!-- BOT DASHBOARD (WIP) -->
+<div id="botDash" style="display:none">
+<section class="section">
+  <div class="page">
+    <div class="wip-banner">
+      <div class="wip-icon">🤖</div>
+      <div class="wip-title">لوحة تحكم السيرفر</div>
+      <p class="wip-sub" style="max-width:400px;margin:.5rem auto 1.5rem">
+        هذا القسم يتطلب ربط البوت بالسيرفر. سيعرض إحصائيات الأعضاء — اللفل، XP، الكردت، والأكثر تفاعلاً.
+      </p>
+      <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+        <a href="#" class="btn btn-primary">توثيق بالديسكورد</a>
+        <a href="#" class="btn btn-outline">ربط البوت</a>
+      </div>
+      <div style="margin-top:2rem;padding:1.25rem;background:white;border:1px solid var(--border);border-radius:var(--radius);max-width:480px;margin-left:auto;margin-right:auto;text-align:right">
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem">ما سيعرضه هذا القسم</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem">
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text2)"><span>⚡</span> لفلك الحالي وعدد XP</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text2)"><span>💰</span> رصيد الكردت</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text2)"><span>🏆</span> مرتبتك في لوحة الشرف</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text2)"><span>📊</span> إحصائيات تفاعلك اليومي</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text2)"><span>🎯</span> تحدياتك المكتملة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">YAKITORI</div>
+    <div class="footer-copy">© Yakitori Community · 2022 – 2026</div>
+    <div class="footer-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="clans.html">الكلانات</a>
+      <a href="#">Discord</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open')}
+function showToast(msg,ok=true){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.background=ok?'var(--text)':'var(--red)';
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function showSection(id, link){
+  document.querySelectorAll('.dash-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.dash-nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  link.classList.add('active');
+  return false;
+}
+
+function switchDashboard(mode){
+  document.getElementById('siteDash').style.display = mode==='site'?'block':'none';
+  document.getElementById('botDash').style.display = mode==='bot'?'block':'none';
+  document.getElementById('btnSite').classList.toggle('active', mode==='site');
+  document.getElementById('btnBot').classList.toggle('active', mode==='bot');
+}
+
+function saveEgg(){
+  const code = document.getElementById('eggCode').value.trim();
+  const hint = document.getElementById('eggHintInput').value.trim();
+  if(!code||!hint){showToast('ادخل الكود والتلميح',false);return;}
+  // TODO: save to Supabase
+  showToast('تم حفظ البيضة!');
+}
+
+function saveSettings(){
+  // TODO: save to Supabase site_settings
+  showToast('تم حفظ الإعدادات!');
+}
+
+function toggleSetting(key, val){
+  // TODO: update site_settings in Supabase
+  showToast(`${key}: ${val?'مفعّل':'معطّل'}`);
+}
+
+function filterReviews(status){
+  // TODO: filter from Supabase
+}
+
+// Sample leaderboard
+const sampleLeaderboard = [
+  {rank:1,name:'عضو أ',clan:'Wonderland',xp:'15,200',level:42,credits:'2.1M'},
+  {rank:2,name:'عضو ب',clan:'Hollow',xp:'12,800',level:38,credits:'1.8M'},
+  {rank:3,name:'عضو ج',clan:'Kamisato',xp:'11,400',level:35,credits:'1.5M'},
+  {rank:4,name:'عضو د',clan:'Genesis',xp:'9,600',level:30,credits:'980K'},
+  {rank:5,name:'عضو هـ',clan:'Pink Hearts',xp:'8,200',level:26,credits:'720K'},
+];
+document.getElementById('leaderboardTable').innerHTML = sampleLeaderboard.map(r=>`
+  <tr>
+    <td><strong style="color:${r.rank<=3?'var(--red)':'var(--text)'}">${r.rank<=3?['🥇','🥈','🥉'][r.rank-1]:r.rank}</strong></td>
+    <td>${r.name}</td>
+    <td>${r.clan}</td>
+    <td>${r.xp}</td>
+    <td>${r.level}</td>
+    <td>${r.credits}</td>
+  </tr>
+`).join('');
+
+// Sample reviews
+const sampleRevTable = [
+  {user:'عضو مجهول',rating:5,text:'سيرفر رائع!',date:'2026-04-30',status:'approved'},
+  {user:'عضو مجهول',rating:4,text:'تجربة ممتازة.',date:'2026-04-29',status:'approved'},
+];
+document.getElementById('reviewsTable').innerHTML = sampleRevTable.map(r=>`
+  <tr>
+    <td>${r.user}</td>
+    <td>${'★'.repeat(r.rating)}</td>
+    <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.text}</td>
+    <td style="direction:ltr">${r.date}</td>
+    <td><span class="badge badge-red">معتمد</span></td>
+    <td><button class="btn btn-danger btn-sm" onclick="showToast('تم الحذف')">حذف</button></td>
+  </tr>
+`).join('');
+</script>
+</body>
+</html>
